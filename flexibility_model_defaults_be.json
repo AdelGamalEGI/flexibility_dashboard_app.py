@@ -1,0 +1,78 @@
+{
+  "consumer": {
+    "households": 5000000,
+    "penetration_rate": 0.25,
+    "loads_per_household": 2,
+    "devices": {
+      "EV": {
+        "flexibility_kW": 7,
+        "CAPEX": 4000,
+        "lifetime_years": 10,
+        "annual_revenue_per_kW": 60,
+        "annual_energy_savings": 200,
+        "availability_factor": 0.85,
+        "degradation_cost_per_year": 50
+      },
+      "Smart HVAC": {
+        "flexibility_kW": 3,
+        "CAPEX": 2500,
+        "lifetime_years": 12,
+        "annual_revenue_per_kW": 50,
+        "annual_energy_savings": 150,
+        "availability_factor": 0.9,
+        "degradation_cost_per_year": 0
+      }
+    },
+    "cost_of_capital": 0.05
+  },
+  "aggregator": {
+    "loads_per_household": 2,
+    "flexibility_kW_per_load": 5,
+    "availability_factor": 0.85,
+    "market_price_per_kW_year": 60,
+    "customer_acquisition_cost": 50,
+    "platform_om_cost_per_household_per_year": 15,
+    "settlement_admin_cost_per_kW": 10,
+    "consumer_share_percentage": 0.6,
+    "discount_rate": 0.05,
+    "years": 10
+  },
+  "utility": {
+    "peak_system_load_GW": 14,
+    "renewable_penetration": 0.45,
+    "renewables_price_reduction_factor": 0.12,
+    "markets": {
+      "Capacity": {
+        "percent_of_peak": 0.05,
+        "price_type": "per_MW_year",
+        "base_price": 45000,
+        "stacking_conflict": []
+      },
+      "Demand Response": {
+        "percent_of_peak": 0.025,
+        "price_type": "per_MWh_event",
+        "base_price": 120,
+        "avg_events_per_year": 8,
+        "avg_duration_hr": 2,
+        "stacking_conflict": ["Capacity"]
+      },
+      "Balancing Energy": {
+        "percent_of_peak": 0.01,
+        "price_type": "per_MWh_utilized",
+        "base_price": 85,
+        "avg_utilization": 0.2,
+        "stacking_conflict": ["Ancillary"]
+      },
+      "Ancillary Services": {
+        "percent_of_peak": 0.008,
+        "price_type": "per_MW_hour",
+        "base_price": 9,
+        "stacking_conflict": ["Balancing"]
+      },
+      "Wholesale Energy (Reference)": {
+        "price_type": "per_MWh",
+        "base_price": 70
+      }
+    }
+  }
+}
